@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+/* --- Reset Global --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,21 +8,16 @@
 }
 
 body {
-
     font-family: 'Roboto', Arial, sans-serif;
     background-color: #113048;
     color: #ecf0f1;
     display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    margin: 0;
-
 }
 
+/* --- Container Principal --- */
 .container {
     display: grid;
     grid-template-areas: "header header" "sidebar main";
@@ -32,7 +28,7 @@ body {
     min-height: 80vh;
     background: linear-gradient(180deg, #E5E5E5 0%, #7F7F7F 100%);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* --- Header --- */
@@ -42,10 +38,9 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    border: 1px solid #000;
-    background: linear-gradient(0deg, #393F42 0%, #393F42 100%);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.30);
-    border-bottom: 1px solid #4a6572;
+    background: #393F42;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 .logo img {
@@ -53,6 +48,7 @@ body {
     border-radius: 50%;
 }
 
+/* Barra de pesquisa */
 .search-bar {
     display: flex;
     align-items: center;
@@ -63,49 +59,63 @@ body {
 }
 
 .search-bar i {
-    color: #393F42;
+    color: #2c3e50;
 }
 
 .search-bar input {
     background: transparent;
     border: none;
     outline: none;
-    color: #ecf0f1;
+    color: #fff;
     margin-left: 10px;
     font-size: 16px;
     width: 100%;
 }
 
 .search-bar input::placeholder {
-    color: #393F42;
+    color: #2c3e50;
 }
 
+/* Título */
 .title h1 {
     font-family: Inter, sans-serif;
     font-size: 40px;
     font-style: italic;
     font-weight: 600;
-    line-height: normal;
-    background: linear-gradient(90deg, #FFF 37%, #FF8B80 58%);
+    background: linear-gradient(90deg, #fff 37%, #FF8B80 58%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 .title h1 strong {
     font-weight: 700;
 }
 
-
-
+/* Ícones do menu */
 .menu-icon i {
     font-size: 24px;
     color: #bdc3c7;
     cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-icon i:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.menu-icon .fa-info-circle {
+    margin-right: 15px;
+}
+
+.menu .fa-bars {
+    margin-right: 10px;
 }
 
 /* --- Sidebar --- */
 .sidebar {
+    grid-area: sidebar;
     background-color: #91A1A8;
     padding: 20px 0;
     display: flex;
@@ -113,18 +123,21 @@ body {
     gap: 8px;
     align-items: center;
     overflow-y: auto;
-    grid-area: sidebar;
-    border-right: 1px solid #4a6572;
-    box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.2);
+    box-shadow: inset -2px 0 6px rgba(0,0,0,0.15);
     scrollbar-width: thin;
     scrollbar-color: #bdc3c7 transparent; 
+}
 
+.sidebar.fechada {
+    transform: translateX(-100%);
 }
 
 .sidebar a {
     text-decoration: none;
     color: inherit;
 }
+
 .sidebar nav ul {
     list-style: none;
     width: 100%;
@@ -139,61 +152,47 @@ body {
     width: 210px;
     height: 50px;
     background: #91A1A8;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
-
-.sidebar.fechada {
-    /* Move a barra 100% para a esquerda, escondendo-a */
-    transform: translateX(-100%);
 }
 
 .sidebar nav ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    color: #fff;
     width: 100%;
     text-align: center;
 }
-
 
 .sidebar nav ul li:hover {
     background-color: #5b7c8d !important;
 }
 
+/* Botão de adicionar */
 .add-button i {
-    font-size: 36px;
+    font-size: 32px;
     color: #bdc3c7;
     cursor: pointer;
     transition: color 0.3s ease;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
 }
 
 .add-button i:hover {
     color: #fff;
 }
 
-
 /* --- Main Content --- */
 .main-content {
-    max-width: 800px;
+    grid-area: main;
+    max-width: 900px;
     margin: 40px auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 .main-content ul {
     list-style: none;
-    padding: 0;
     display: flex !important;
     flex-wrap: wrap;
     gap: 20px;
@@ -208,18 +207,16 @@ body {
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden;
-    cursor: pointer; /* cursor de link */
-    padding: 0; /* padding agora no <a> */
+    cursor: pointer;
 }
 
 .main-content li:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.35);
 }
 
 .main-content li a {
-    display: flex; /* ocupa todo o li */
+    display: flex;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -230,7 +227,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     border-radius: 10px;
-    transition: background 0.2s;
+    transition: background 0.3s ease;
     text-align: center;
 }
 
@@ -238,7 +235,7 @@ body {
     background: linear-gradient(90deg, #5b7c8d 0%, #0f2433 100%);
 }
 
-/* Botão Adicionar módulo */
+/* Botão adicionar módulo */
 .main-content a[href*="Adicionarmodulo.php"] {
     display: inline-block;
     margin-top: 30px;
@@ -248,45 +245,119 @@ body {
     text-decoration: none;
     border-radius: 6px;
     font-weight: bold;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s ease;
 }
 
 .main-content a[href*="Adicionarmodulo.php"]:hover {
     background-color: #40a9ff;
 }
 
-/* --- Cards placeholder --- */
-.card {
-    background: linear-gradient(90deg, #91A1A8 0%, #113048 100%);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.5);
-    border: 1px solid #000;
+/* --- Cards --- */
+.cards-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Aumentado o espaçamento entre os cards */
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #222;
+    padding: 20px; /* Aumentado o padding da tabela */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-.card h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
+.card {
+    /* Aumentado o tamanho base do card para acomodar mais conteúdo */
+    flex: 1 1 350px; 
+    background: linear-gradient(135deg, #2c3e50, #1a252f);
+    padding: 30px; /* Aumentado o padding interno */
+    border-radius: 12px; /* Arredondamento maior */
+    text-align: left; /* Alinhamento à esquerda para um layout de lista */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px); /* Efeito de elevação mais pronunciado */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.card h2, 
+.card h3 {
+    font-size: 1.5em; /* Aumentado o tamanho da fonte do título */
+    margin-bottom: 15px; /* Mais espaço abaixo do título */
+    font-weight: 700;
+    color: #f1f1f1;
+    border-bottom: 3px solid #007bff; /* Linha de destaque mais grossa */
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Espaçamento entre letras para melhor leitura */
+}
+
+/* Novo estilo para um subtítulo */
+.card h4 {
+    font-size: 1.1em;
     font-weight: 500;
+    color: #00bcd4; /* Cor de destaque para subtítulos */
+    margin-top: 15px;
+    margin-bottom: 8px;
 }
 
 .card p {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 1em; /* Tamanho da fonte padrão para o corpo do texto */
+    line-height: 1.8; /* Aumentado o espaçamento entre linhas */
     color: #d0d3d4;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha divisória mais visível */
+}
+
+.card p:last-of-type {
+    border-bottom: none;
 }
 
 .card p strong {
-    font-weight: 500;
-    color: #ecf0f1;
+    font-weight: 700;
+    color: #fff;
 }
 
-.card.placeholder {
-    min-height: 150px;
+/* Estilo para uma lista de itens, como "mais informações" */
+.card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
 }
 
-/* --- Responsividade para telas pequenas --- */
+.card ul li {
+    font-size: 0.95em;
+    color: #d0d3d4;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Link ou botão de ação */
+.card a {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px; /* Mais espaço acima do botão */
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card a:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+/* --- Responsividade --- */
 @media (max-width: 768px) {
     .search-bar {
         width: 100%;
@@ -303,106 +374,4 @@ body {
         flex: 1 1 100%;
     }
 }
-
-/* Container que organiza os cards em uma grade responsiva, como uma tabela */
-.cards-table {
-  display: flex;
-  flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha em telas menores */
-  gap: 2px; /* Espaço mínimo entre os "células" da tabela */
-  border: 1px solid #333; /* Borda da tabela com cor mais escura */
-  border-radius: 8px;
-  overflow: hidden; /* Garante que os cantos arredondados sejam mantidos */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  background-color: #222;
-}
-
-/* Estilo para cada "célula" da tabela */
-.card {
-  flex: 1 1 250px; /* Cresce e encolhe, com largura base de 250px */
-  background-color: #444;
-  padding: 15px;
-  border-right: 1px solid #333; /* Divisor vertical entre os cards */
-  border-bottom: 1px solid #333; /* Divisor horizontal para a última linha */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #fff; /* Cor do texto padrão para branco */
-}
-
-/* Título de cada card (cabeçalho da "coluna") */
-.card h3 {
-  margin: 0;
-  padding-bottom: 10px;
-  font-size: 1.1em;
-  color: white; /* Cor do título para branco */
-  font-weight: bold;
-  border-bottom: 2px solid #0056b3;
-  text-transform: uppercase;
-}
-
-/* Estilo para os dados (linhas da "tabela") */
-.card p {
-  margin: 0;
-  padding: 8px 0;
-  color: #ddd; /* Cor do texto dos dados para um branco mais suave */
-  border-bottom: 1px solid #0056b3; /* Divisor de linha entre os dados */
-}
-
-/* Remove a borda inferior do último dado de cada card */
-.card p:last-of-type {
-  border-bottom: none;
-}
-
-/* Estilo para o link de ação */
-.card a {
-  display: block;
-  width: 100%; /* Ocupa a largura total da "célula" */
-  padding: 10px;
-  margin-top: auto; /* Empurra o link para o final do card */
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-}
-
-.card a:hover {
-  background-color: #0056b3;
-}
-
-.menu-icon i:hover {
-    color: #bdc3c7;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.menu-icon i:hover {
-    color: #fff;
-}
-
-.menu-icon .fa-info-circle {
-    margin-right: 15px;
-}
-
-.menu .fa-bars {
-    margin-right: 10px;
-}
-
-.menu .fa-bars:hover {
-    color: #fff;
-    cursor: pointer;
-    transition: color 0.3s ease;
-
-}
-
-.menu i {
-    font-size: 30px;
-    color: #bdc3c7;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-}
+;
